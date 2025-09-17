@@ -19,19 +19,22 @@ class LoginScreen extends StatelessWidget {
 
         children: [
           const SizedBox(height: 40),
-          Text(
-            'Welcome Back',
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: context.appColors.text,
-              fontWeight: FontWeight.bold,
+          Center(
+            child: Text(
+              'Login',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w500,
+                color: context.appColors.primary,
+              ),
             ),
           ),
           const SizedBox(height: 10),
-          Text(
-            'Login to your account',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: context.appColors.text),
+          Center(
+            child: Text(
+              'Welcome back to your account',
+              style: TextStyle(fontWeight: FontWeight.w300),
+            ),
           ),
           const SizedBox(height: 40),
           TextField(
