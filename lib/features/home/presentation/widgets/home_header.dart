@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:dibasys_task/core/utils/assets/app_assets.dart';
 import 'package:dibasys_task/core/utils/customs/custom_button.dart';
 import 'package:dibasys_task/core/utils/theme/app_theme.dart';
@@ -41,79 +42,58 @@ class HomeHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.menu, color: Colors.black),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: ImageIcon(AssetImage(AppIcons.download), size: 20),
-                    ),
-                  ],
-                ),
-              ],
+            FadeInDown(
+              duration: const Duration(milliseconds: 800),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.menu, color: Colors.black),
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: ImageIcon(
+                          AssetImage(AppIcons.download),
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
-            // Greeting
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hey $username",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Color(0xff3F3E3E),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      date,
-                      style: const TextStyle(color: Color(0xff3F3E3E)),
-                    ),
-                  ],
-                ),
-                const CircleAvatar(
-                  radius: 18,
-                  backgroundImage: NetworkImage(
-                    "https://i.pravatar.cc/150?img=12",
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            // Working Hours
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                color: Color(0xCC3C3939),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
+
+            FadeInLeft(
+              duration: const Duration(milliseconds: 800),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Working Hours",
-                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hey $username",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Color(0xff3F3E3E),
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        date,
+                        style: const TextStyle(color: Color(0xff3F3E3E)),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    workingHours,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
+                  const CircleAvatar(
+                    radius: 18,
+                    backgroundImage: NetworkImage(
+                      "https://i.pravatar.cc/150?img=12",
                     ),
                   ),
                 ],
@@ -121,20 +101,54 @@ class HomeHeader extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            CustomButton(
-              title: "Manual Check-in",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    duration: const Duration(milliseconds: 400),
-                    child: const CheckInScreen(),
-                  ),
-                );
-              },
-              color: context.appColors.primary,
-              textColor: context.appColors.text,
+            ZoomIn(
+              duration: const Duration(milliseconds: 900),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                  color: const Color(0xCC3C3939),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    const Text(
+                      "Working Hours",
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      workingHours,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            BounceInUp(
+              duration: const Duration(milliseconds: 900),
+              child: CustomButton(
+                title: "Manual Check-in",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      duration: const Duration(milliseconds: 400),
+                      child: const CheckInScreen(),
+                    ),
+                  );
+                },
+                color: context.appColors.primary,
+                textColor: context.appColors.text,
+              ),
             ),
           ],
         ),

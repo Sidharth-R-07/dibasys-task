@@ -37,7 +37,7 @@ class CustomTextField extends StatelessWidget {
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0xFF1A1A1A), // dark background
+            fillColor: const Color(0xFF1A1A1A),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
               vertical: 14,

@@ -29,7 +29,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
 
-      // Bottom NavBar
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: context.appColors.background,
         selectedItemColor: context.appColors.primary,
