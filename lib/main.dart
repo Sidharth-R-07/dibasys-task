@@ -1,5 +1,6 @@
 import 'package:dibasys_task/core/utils/assets/app_assets.dart';
 import 'package:dibasys_task/core/utils/theme/app_theme.dart';
+import 'package:dibasys_task/features/checkin/presentation/provider/checkin_provider.dart';
 import 'package:dibasys_task/features/login/presentation/provider/login_provider.dart';
 import 'package:dibasys_task/features/login/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => LoginProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => CheckInProvider()),
+      ],
       child: DefaultTextStyle(
         style: TextStyle(color: context.appColors.text),
         child: MaterialApp(

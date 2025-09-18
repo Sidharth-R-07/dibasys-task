@@ -1,9 +1,11 @@
 import 'package:dibasys_task/core/utils/customs/custom_button.dart';
 import 'package:dibasys_task/core/utils/customs/custom_text_feild.dart';
 import 'package:dibasys_task/core/utils/theme/app_theme.dart';
+import 'package:dibasys_task/features/home/presentation/screens/home_screen.dart';
 import 'package:dibasys_task/features/login/presentation/provider/login_provider.dart';
 import 'package:dibasys_task/features/login/presentation/widgets/pin_code_feilds.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -104,10 +106,38 @@ class _LoginScreenState extends State<LoginScreen> {
           CustomButton(
             title: "Login",
             onPressed: () {
-              // your action
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  duration: const Duration(milliseconds: 400),
+                  child: const HomeScreen(),
+                ),
+              );
             },
             color: context.appColors.primary,
             textColor: context.appColors.text,
+          ),
+          const SizedBox(height: 30),
+          Center(
+            child: RichText(
+              text: TextSpan(
+                text: "Don't have an account? ",
+                style: TextStyle(
+                  color: context.appColors.text,
+                  fontWeight: FontWeight.w300,
+                ),
+                children: [
+                  TextSpan(
+                    text: "Register",
+                    style: TextStyle(
+                      color: context.appColors.primary,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
