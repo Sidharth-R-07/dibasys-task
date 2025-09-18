@@ -1,17 +1,54 @@
-# dibasys_task
+# Flutter App (Clean Architecture)
 
-A new Flutter project.
+A Flutter application built using **Feature-Based Clean Architecture**, following separation of concerns with `presentation`, `widgets`, and `provider` layers.  
+The app demonstrates **custom widgets, animations, and state management with Provider**.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🛠️ Flutter Version
 
-A few resources to get you started if this is your first Flutter project:
+- **Flutter:** 3.35.2
+- **Dart:** 3.9.0
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ✨ Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# dibasys-task
+- **Login Screen**
+
+  - Custom input fields and buttons.
+  - Provider state management for handling form validation and navigation.
+
+- **Home Screen**
+
+  - Displays the main UI after login.
+  - Organized widgets .
+
+---
+
+## 🏗️ Project Structure
+
+```bash
+lib/
+│
+├── core/                        # Core utilities, themes, constants, custom widgets
+│
+├── features/
+│   ├── login/
+│   │   └── presentation/
+│   │       ├── screens/         # LoginScreen
+│   │       ├── widgets/         # Custom input fields, buttons
+│   │       └── provider/        # LoginProvider
+│   │
+│   ├── home/
+│   │   └── presentation/
+│   │       ├── screens/         # HomeScreen
+│   │       ├── widgets/         # Home UI widgets
+│   │       └── provider/        # HomeProvider
+│   │
+│   └── checkin/
+│       └── presentation/
+│           ├── screens/
+│           ├── widgets/
+│           └── provider/
+│
+└── main.dart                    # App entry point
+```
