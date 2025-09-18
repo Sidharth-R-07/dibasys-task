@@ -1,8 +1,26 @@
+import 'package:dibasys_task/core/utils/customs/custom_button.dart';
+import 'package:dibasys_task/core/utils/customs/custom_text_feild.dart';
 import 'package:dibasys_task/core/utils/theme/app_theme.dart';
+import 'package:dibasys_task/features/login/presentation/provider/login_provider.dart';
+import 'package:dibasys_task/features/login/presentation/widgets/pin_code_feilds.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +33,7 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
 
         children: [
           const SizedBox(height: 40),
@@ -37,52 +55,59 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Email',
-              labelStyle: TextStyle(color: context.appColors.text),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.appColors.text),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.appColors.primary),
-              ),
-            ),
-            style: TextStyle(color: context.appColors.text),
-            keyboardType: TextInputType.emailAddress,
+          CustomTextField(
+            label: "Phone number",
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 20),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Password',
-              labelStyle: TextStyle(color: context.appColors.text),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.appColors.text),
+          PasscodeField(
+            onCompleted: (code) {
+              print("Entered Passcode: $code");
+            },
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Consumer<LoginProvider>(
+                builder: (context, state, _) => Checkbox(
+                  checkColor: context.appColors.text,
+                  activeColor: context.appColors.primary,
+                  value: state.rememberMe,
+                  onChanged: context.read<LoginProvider>().toggleRememberMe,
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: context.appColors.primary),
+
+              Expanded(
+                child: Text(
+                  'Remember me',
+                  style: TextStyle(fontWeight: FontWeight.w300),
+                ),
               ),
-            ),
-            style: TextStyle(color: context.appColors.text),
-            obscureText: true,
+              const SizedBox(width: 4),
+              TextButton(
+                onPressed: () {},
+                isSemanticButton: false,
+                child: Text(
+                  "Forgot Passcode?",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    color: context.appColors.primary,
+                    decoration: TextDecoration.underline,
+                    decorationColor: context.appColors.primary,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: context.appColors.primary,
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: Text(
-              'Login',
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: context.appColors.text,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          CustomButton(
+            title: "Login",
+            onPressed: () {
+              // your action
+            },
+            color: context.appColors.primary,
+            textColor: context.appColors.text,
           ),
         ],
       ),
